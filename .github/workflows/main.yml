@@ -16,5 +16,9 @@ jobs:     # List of jobs in this workflow
 
       - name: Checkout Repo     # second step name 
         uses: actions/checkout@v5.0.0
-      
+   
+      - name: list repo files 
+        run: ls -la
+        
+            
         
