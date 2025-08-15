@@ -11,5 +11,10 @@ jobs:     # List of jobs in this workflow
     runs-on: ubuntu-latest    # Use the latest Ubuntu runner
 
     steps:     # Sequence of steps for this job
-      - name: Print a welcome message
+      - name: Print a welcome message  # first step name 
         run: echo "Welcome to our first GitHub Actions Workflow!"
+
+      - name: Checkout Repo     # second step name 
+        uses: actions/checkout@v5.0.0
+      
+        
