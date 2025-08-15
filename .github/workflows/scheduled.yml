@@ -1,10 +1,13 @@
+name: schedule trigger for the workflow   # Name of the workflow
+
 on:
- schedule: 
-   cron: 16 19 * * *
-   
+  schedule:
+    - cron: "25 19 15 8 *"   # Cron syntax: minute hour day month day_of_week
+                            # Runs daily at 19:25 UTC
+
 jobs:
-  daily_task:
-    run-on: ubuntu-latest
+  daily_task:               # Job name
+    runs-on: ubuntu-latest  # GitHub-hosted Ubuntu runner
     steps:
-      - name: Print msg 
+      - name: Print message
         run: echo "Running the scheduled task"
