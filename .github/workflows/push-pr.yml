@@ -14,9 +14,8 @@ on:
 jobs: 
   test:
     runs-on: ubuntu-latest
-
-  steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v5.0.0    
-    - name: Run tests
-      run: npm test
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v5.0.0    
+      - name: Run tests
+        run: npm test
