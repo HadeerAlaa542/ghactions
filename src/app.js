@@ -1,6 +1,6 @@
 function greet(name) {
 
-    return `Hell0000 Dear, ${name}!`;
+    return `Hello, ${name}!`;
     
     }
     
