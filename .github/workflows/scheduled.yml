@@ -2,9 +2,7 @@ name: schedule trigger for the workflow   # Name of the workflow
 
 on:
   schedule:
-    - cron: "38 18 15 8 *"   # Cron syntax: minute hour day month day_of_week
-                            # Runs daily at 19:25 UTC
-
+    - cron: "55 18 15 8 *"   # Cron syntax: minute hour day month day_of_week(0-7)
 jobs:
   daily_task:               # Job name
     runs-on: ubuntu-latest  # GitHub-hosted Ubuntu runner
