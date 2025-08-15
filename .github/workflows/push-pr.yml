@@ -1,5 +1,6 @@
-# this workflow will be triggered when push or PR happen 
-name: Push and PR Workflow   # Name of the workflow 
+# This workflow runs when a push or pull request is made to main or release/** affecting src/**
+name: Push and PR Workflow
+
 on:
   push: 
     branches:
@@ -10,12 +11,17 @@ on:
   pull_request:
     branches:
       - main
-      - "release/**"      
+      - "release/**"
+
 jobs: 
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v5.0.0    
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Run tests
         run: npm test
