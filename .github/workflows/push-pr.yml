@@ -1,6 +1,5 @@
-# this workflow will be triggered when push or PR happens
-name: 
-
+# this workflow will be triggered when push or PR happen 
+name: Push and PR Workflow   # Name of the workflow 
 on:
   push: 
     branches:
@@ -16,8 +15,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    steps:
-  - name: Checkout Repo
-    uses: actions/checkout@v5.0.0    
-  - name: Run tests
-    run: npm test
+  steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v5.0.0    
+    - name: Run tests
+      run: npm test
