@@ -1,0 +1,11 @@
+name: manual trigger
+
+on:
+  workflow_dispatch:   # 'workflow_dispatch' allows you to manually trigger the workflow from the GitHub Actions tab
+
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Application
+        run: echo "Deploying the app ...."
