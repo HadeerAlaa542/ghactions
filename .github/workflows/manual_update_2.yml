@@ -1,0 +1,16 @@
+# Name of the GitHub Actions workflow
+name: trigger from an API call
+# Define the event that will trigger this workflow
+on:
+  # 'repository_dispatch' allows external services or scripts 
+  # to trigger this workflow using the GitHub API
+  repository_dispatch:
+    # 'types' specifies the custom event name that will trigger this workflow.
+    # In this case, the workflow will only run if the type is 'incident_report'
+    types: [incident_report]
+jobs:
+  handle-incident:   # Job name
+    runs-on: ubuntu-latest      # Use GitHub-hosted Ubuntu runner
+    steps:    # Step 1: Print a simple message when the workflow runs
+      - name: Print incident details
+        run: echo "Incident reported"
