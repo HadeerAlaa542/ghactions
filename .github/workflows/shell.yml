@@ -1,0 +1,17 @@
+# This workflow can be triggered manually from gui or cli
+on:
+  workflow_dispatch:   # Event that allows manual triggering
+
+jobs:
+  job_1:               # job name 
+    runs-on: ubuntu-latest   # Job will run on the latest Ubuntu VM provided by GitHub
+
+    steps:             # Sequence of steps to execute
+      - run: |         # First step: run multiple commands
+          npm install  # Install dependencies
+          npm run build  # Run the build script
+        working-directory: ./temp  # Run the above commands inside the ./temp directory
+        shell: bash    # Use Bash shell to execute the commands
+
+      - run: print %ENV   # Second step: print all environment variables
+        shell: perl {0}   # Use Perl shell to run the command
