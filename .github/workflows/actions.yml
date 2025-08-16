@@ -1,0 +1,16 @@
+on:  
+  workflow_dispatch:
+
+jobs: 
+  actions-job:
+    runs-on: ubuntu-latest
+    steps:
+      -name: Say Hello
+        uses: .github/actions/Greeting@v1    # use a local action on your repo
+        with:   # use with to pass inputs to the action 
+          name: Hadeer
+        env:    #use env to pass env var. like tokens  to the action 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   #to enable the workflow to deal with github
+          
+          
+          
