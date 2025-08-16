@@ -6,7 +6,7 @@ jobs:
     strategy:                # Defines how the job should run with different combinations
       fail-fast: false       # If one matrix job fails, others will continue running
       max-parallel: 3        # Maximum number of jobs that can run at the same time
-      matrix:                # Matrix strategy generates multiple jobs for combinations of values
+      matrix:                # Matrix strategy generates multiple jobs for combinations of values it is like "nested loop"
         os: [ubuntu-latest, windows-latest, macos-latest]   # Different operating systems to test on
         node_version: [14.x, 15.x, 16.x]                    # Different Node.js versions to test with
 
