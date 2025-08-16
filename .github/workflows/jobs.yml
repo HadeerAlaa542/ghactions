@@ -1,0 +1,26 @@
+on:
+  workflow_dispatch:      # manual trigger using gui or cli
+
+jobs:
+  job_1:
+    runs-on: ubuntu-latest
+    steps:
+    - run: "echo Job ${{ github.job }}"    # env var. in ghactions to print the job name 
+
+  job_2:
+    runs-on: ubuntu-latest
+    needs: job_1            # needs means that job_2 depends on job_1 so , job1 must be finished before job2 start
+    steps:
+    - run: "echo Job ${{ github.job }}"
+
+  job_3:
+    runs-on: ubuntu-latest
+    needs: job_1
+    steps:
+    - run: "echo Job ${{ github.job }}"
+
+  job_4: 
+    runs-on: ubuntu-latest
+    needs: [job_2,job_3]   # [ ] means list
+    steps:
+    - run: "echo Job ${{ github.job }}"
