@@ -1,0 +1,48 @@
+# Trigger: This workflow can be triggered manually from the GitHub Actions tab
+on: 
+  workflow_dispatch:
+
+jobs:
+  # -------------------- First Job: hybrid_job --------------------
+  hybrid_job:
+    runs-on: ubuntu-latest   # This job runs on the Ubuntu VM (GitHub-hosted runner)
+    steps:
+      # Step 1: Run directly on the Ubuntu VM
+      - name: Run command in ubuntu vm
+        run: echo "This runs on the ubuntu vm"
+
+      # Step 2: Run inside an Alpine container
+      # "uses: docker://image" allows you to run a step inside a container image #in step the image must be accessible without authentication
+      - name: Run inside an Alpine container 
+        uses: docker://alpine:3.14   # Pull public Alpine image (no authentication required bacause it is a public image)
+        with: 
+          entrypoint: /bin/sh       
+          args: -c "echo 'This step runs inside an alpine container'"
+
+      # Step 3: Back to running on the Ubuntu VM
+      - name: Run another command in ubuntu vm 
+        run: echo "Back to the vm"
+  
+  # -------------------- Second Job: dockerized_job --------------------
+  dockerized_job:   
+    runs-on: ubuntu-latest
+    container: node:20   #this step will run inside the container not on the vm
+    steps:               
+      - run: node --version   # Show Node.js version from inside the container
+      - run: echo "This whole job runs inside the Node.js container"
+
+  # -------------------- Third Job: dockerized_job_PrivateImage --------------------
+  dockerized_job_PrivateImage:   
+    runs-on: ubuntu-latest 
+    container: 
+      image: ghcr.io/my-org/my-private-image:latest   # Private image from GitHub Container Registry
+      credentials:
+        username: ${{ secrets.DOCKR_USERNAME }}       # Docker username stored in secrets
+        password: ${{ secrets.DOCKR_PASSWORD }}       # Docker password stored in secrets
+    steps:  
+      - run: echo "Check the container version:"
+      - run: node --version   
+      - run: echo "This whole job runs inside the private container"
+      
+  
+          
